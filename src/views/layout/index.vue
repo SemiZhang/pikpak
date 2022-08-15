@@ -17,7 +17,7 @@
       </a>
       <n-menu :options="menuOptions" :value="String(route.name)" @update:value="goRoute"></n-menu>
       <div class="content-bottom" v-if="!collapsed">
-        {{byteConvert(aboutInfo?.quota.usage)}} / {{byteConvert(aboutInfo?.quota.limit)}} <n-text type="primary" @click="showCode = true">会员码</n-text>
+        {{byteConvert(aboutInfo?.quota.usage)}} / {{byteConvert(aboutInfo?.quota.limit)}} <n-text type="primary" style="cursor: pointer;" @click="showCode = true">会员码</n-text>
         <n-progress 
           v-if="aboutInfo?.quota"
           type="line"
@@ -28,12 +28,18 @@
           processing>
         </n-progress>
         <p style="margin-bottom: 0;">
-          <n-tooltip :width="600" placement="right">
+          <n-popover :width="210" placement="right">
               <template #trigger>
-                <a style="color: #306eff;" target="_blank" href="https://k.youshop10.com/JGDtoxg6">2021年12月23日~2021年12月31日￥119购体验会员VIP年卡</a>
+                <a style="color: #306eff;" target="_blank" href="https://s.click.taobao.com/Gsv0iUu">购买开通会员畅享10TB云盘空间，无限云传输次数，高清无损画质</a>
               </template>
-              2021年12月23日~2021年12月31日 【1年PikPak体验会员仅售：119元！原价450元】 2022年1月1日起： 1年PikPak体验会员仅售：169元！原价450元】 -每人只能购买使用一次，官方代理商分销，感谢支持
-          </n-tooltip>
+                <template #header>
+                  <n-text strong  depth="1">
+                    体验会员单账户只限使用一次
+                  </n-text>
+                </template>
+              <img src="../../assets/taobao1.png" style="width: 180px; height: 180px;" alt="">
+              <div style="text-align: center"><b>扫码购买</b></div>
+          </n-popover>
         </p>
       </div>
       <div class="sider-bottom" v-if="!collapsed" :class="{vip: vipInfo?.status === 'ok'}">
@@ -76,7 +82,13 @@
       </template>
       <n-input placeholder="会员码" v-model:value="code"></n-input>
       <p>
-        <a style="color: #306eff;" target="_blank" href="https://k.youshop10.com/JGDtoxg6">【0.33元/天】PikPak体验会员VIP年卡-可与7天免费会员码叠加-每人只能购买使用一次，感谢支持</a>
+        <a style="color: #306eff;" target="_blank" href="https://s.click.taobao.com/Gsv0iUu">购买开通会员畅享10TB云盘空间，无限云传输次数，高清无损画质</a>&nbsp;&nbsp;
+        <n-popover :width="180" placement="bottom">
+              <template #trigger>
+                <n-text strong type="info" style="cursor: pointer;">扫码购买</n-text>
+              </template>
+              <img src="../../assets/taobao1.png" style="width: 180px; height: 180px;" alt="">
+          </n-popover>
       </p>
 
       <template #action>
@@ -89,7 +101,7 @@
 <script setup lang="ts">
 import { ref } from '@vue/reactivity';
 import { h, onMounted, watch } from '@vue/runtime-core';
-import { NLayout, NLayoutSider, NLayoutContent, NMenu, MenuOption, NIcon, NProgress, NText, NModal, NCard, NInput, NButton, NScrollbar, NTime, NTooltip, useDialog } from 'naive-ui'
+import { NLayout, NLayoutSider, NLayoutContent, NMenu, MenuOption, NIcon, NProgress, NText, NModal, NCard, NInput, NButton, NScrollbar, NTime, NTooltip, useDialog, NPopover } from 'naive-ui'
 import { File, Trash, CircleX, Logout, Settings, Copy, Video, Camera } from '@vicons/tabler'
 import http from '../../utils/axios'
 import { byteConvert } from '../../utils'
